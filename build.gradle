@@ -25,3 +25,8 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    coroutinesVersion = "1.4.3"
+    koinVersion = "2.1.0"
+}
