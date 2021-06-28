@@ -11,9 +11,9 @@ import retrofit2.http.Path
 interface RickyMortyAPI {
 
     @GET("character")
-    fun getCharacters() : CharacterListResponse
+    fun getCharacters(): CharacterListResponse
 
     @GET("character/{characterId}")
-    fun getCharacterDetail(@Path("characterId") characterId: Int) : CharacterResponse
+    fun getCharacterDetail(@Path("characterId") characterId: Int): CharacterResponse
 
 }

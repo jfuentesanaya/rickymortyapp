@@ -1,6 +1,7 @@
 package com.jfuentes.rickymortyapp.data.remote
 
-import com.jfuentes.rickymortyapp.data.remote.model.CharacterResponse
+import com.jfuentes.rickymortyapp.data.remote.model.toCharacter
+import com.jfuentes.rickymortyapp.domain.model.Character
 import com.jfuentes.rickymortyapp.domain.RickyMortyService
 
 /**
@@ -8,11 +9,11 @@ import com.jfuentes.rickymortyapp.domain.RickyMortyService
  */
 class RickyMortyServiceImpl(private val rickyMortyAPI: RickyMortyAPI) : RickyMortyService {
 
-    override suspend fun getCharacterList(): List<CharacterResponse> {
-        return rickyMortyAPI.getCharacters().results
+    override suspend fun getCharacterList(): List<Character> {
+        return rickyMortyAPI.getCharacters().results.map { it.toCharacter() }
     }
 
-    override suspend fun getCharacterDetail(characterId: Int): CharacterResponse {
-        return rickyMortyAPI.getCharacterDetail(characterId)
+    override suspend fun getCharacterDetail(characterId: Int): Character {
+        return rickyMortyAPI.getCharacterDetail(characterId).toCharacter()
     }
 }
