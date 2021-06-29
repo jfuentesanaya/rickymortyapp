@@ -29,6 +29,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    dataBinding {
+        enabled = true
+    }
 }
 
 dependencies {
@@ -48,14 +51,15 @@ dependencies {
 
     //Retrofit
     implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.0'
     implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
 
     //Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     //Koin
-    implementation "org.koin:koin-core:${rootProject.ext.koinVersion}"
-    implementation "org.koin:koin-android:${rootProject.ext.koinVersion}"
+    implementation "io.insert-koin:koin-core:${rootProject.ext.koinVersion}"
+    implementation "io.insert-koin:koin-android:${rootProject.ext.koinVersion}"
 
     // lifecycle
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
