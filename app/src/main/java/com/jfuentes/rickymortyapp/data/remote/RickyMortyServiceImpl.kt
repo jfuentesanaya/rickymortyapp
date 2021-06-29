@@ -10,7 +10,9 @@ import com.jfuentes.rickymortyapp.domain.RickyMortyService
 class RickyMortyServiceImpl(private val rickyMortyAPI: RickyMortyAPI) : RickyMortyService {
 
     override suspend fun getCharacterList(): List<Character> {
-        return rickyMortyAPI.getCharacters().results.map { it.toCharacter() }
+        return rickyMortyAPI.getCharacters().results.map {
+            it.toCharacter()
+        }
     }
 
     override suspend fun getCharacterDetail(characterId: Int): Character {

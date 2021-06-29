@@ -9,9 +9,9 @@ data class CharacterListResponse(
 
 data class Info(
     val count: Int,
-    val next: String,
     val pages: Int,
-    val prev: Any
+    val next: String,
+    val prev: String?
 )
 
 data class LocationResponse(

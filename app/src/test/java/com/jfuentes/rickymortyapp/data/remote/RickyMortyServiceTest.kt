@@ -3,7 +3,6 @@ package com.jfuentes.rickymortyapp.data.remote
 import com.jfuentes.rickymortyapp.data.remote.model.CharacterResponse
 import com.jfuentes.rickymortyapp.data.remote.model.LocationResponse
 import com.jfuentes.rickymortyapp.data.remote.model.toCharacter
-import com.jfuentes.rickymortyapp.domain.model.Character
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
@@ -21,15 +20,14 @@ class RickyMortyServiceTest {
 
     @Test
     fun `should call getCharactersList api when service is executed`() = runBlocking {
-        coEvery { service.getCharacterList() } returns emptyList()
+        coEvery { api.getCharacters().results } returns listOf(fakeResponseObject)
         service.getCharacterList()
         coVerify(exactly = 1) { api.getCharacters() }
     }
 
     @Test
     fun `should call getCharactersDetail api when service is executed`() = runBlocking {
-        val fakeCharacter = mockk<Character>()
-        coEvery { service.getCharacterDetail(1) } returns fakeCharacter
+        coEvery { api.getCharacterDetail(1) } returns fakeResponseObject
 
         service.getCharacterDetail(1)
         coVerify(exactly = 1) { api.getCharacterDetail(1) }
