@@ -5,7 +5,6 @@ import com.jfuentes.rickymortyapp.data.remote.BASE_URL
 import com.jfuentes.rickymortyapp.data.remote.RickyMortyAPI
 import com.jfuentes.rickymortyapp.data.remote.RickyMortyServiceImpl
 import com.jfuentes.rickymortyapp.domain.RickyMortyService
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

@@ -1,8 +1,11 @@
 package com.jfuentes.rickymortyapp.presentation.adapter
 
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jfuentes.rickymortyapp.domain.model.Character
+import com.squareup.picasso.Picasso
 
 
 /**
@@ -21,3 +24,13 @@ fun RecyclerView.setRecyclerViewProperties(data: MutableList<Character>) {
 fun RecyclerView.setAdapter(adapter: CharacterAdapter) {
     this.adapter = adapter
 }
+
+@BindingAdapter(value = ["imageUrl", "placeholderImage"], requireAll = false)
+fun ImageView.setImage(url: String, @DrawableRes placeholder: Int?) {
+    val picasso = Picasso.get().load(url)
+    if (placeholder != null) {
+        picasso.placeholder(placeholder)
+    }
+    picasso.into(this)
+}
+

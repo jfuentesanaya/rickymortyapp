@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RickyMortyApp</string>
+    <string name="status">Status:</string>
+    <string name="specie">Specie:</string>
+    <string name="gender">Gender:</string>
+    <string name="type">Type:</string>
+    <string name="origin">Origin:</string>
 </resources>

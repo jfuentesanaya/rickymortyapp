@@ -1,36 +1,35 @@
 package com.jfuentes.rickymortyapp.presentation.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.jfuentes.rickymortyapp.R
+import com.jfuentes.rickymortyapp.databinding.CharacterItemBinding
 import com.jfuentes.rickymortyapp.domain.model.Character
-import com.squareup.picasso.Picasso
+import com.jfuentes.rickymortyapp.presentation.viewmodel.CardItemVM
 
 /**
  * Created by Juan Fuentes on 29/06/2021.
  */
-class CharacterAdapter(
-    private val picasso: Picasso
-) : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
 
     private var values: List<Character> = emptyList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.character_item, parent, false)
-        return CharacterViewHolder(view)
+
+        val binding: CharacterItemBinding = DataBindingUtil.inflate(
+            LayoutInflater.from(parent.context),
+            R.layout.character_item,
+            parent,
+            false
+        )
+
+        return CharacterViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        val item = values[position]
-
-        holder.bind(item)
-       /* holder.item.setOnClickListener {
-            listener.onClickItem(item) }*/
+        holder.bind(values[position])
     }
 
     override fun getItemCount(): Int = values.size
@@ -40,18 +39,10 @@ class CharacterAdapter(
         notifyDataSetChanged()
     }
 
-    inner class CharacterViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val item: View = view.findViewById(R.id.item_layout)
-        private val idView: TextView = view.findViewById(R.id.tv_name)
-        val contentView: ImageView = view.findViewById(R.id.iv_character)
-
+    inner class CharacterViewHolder(private val binding: CharacterItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Character) {
-            idView.text = item.name
-            picasso.load(item.image).placeholder(R.drawable.img_not_available).into(contentView)
+            val itemVM = CardItemVM(item)
+            binding.model = itemVM
         }
-    }
-
-    interface OnClickCharacter {
-        fun onClickItem(item: Character)
     }
 }

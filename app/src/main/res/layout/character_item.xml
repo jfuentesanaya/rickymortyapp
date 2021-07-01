@@ -15,28 +15,31 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         card_view:cardCornerRadius="10dp"
-        card_view:cardElevation="5dp">
+        card_view:cardElevation="5dp"
+        android:onClick="@{model::onClickItem}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/item_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:onClick="@{model::onClickItem}">
+            android:layout_margin="5dp">
 
             <ImageView
                 android:id="@+id/iv_character"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
+                app:imageUrl="@{model.imageUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:placeholderImage="@{model.placeholderImage}"
                 tools:src="@drawable/img_not_available" />
 
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{model.name}"
                 android:layout_margin="10dp"
                 android:textAlignment="center"
                 app:layout_constraintEnd_toEndOf="parent"
