@@ -2,13 +2,12 @@ package com.jfuentes.rickymortyapp.presentation.activities
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.jfuentes.rickymortyapp.R
-import org.koin.androidx.viewmodel.ext.android.viewModel
-import androidx.databinding.DataBindingUtil
 import com.jfuentes.rickymortyapp.databinding.ActivityListBinding
 import com.jfuentes.rickymortyapp.presentation.viewmodel.ListVM
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ListActivity : AppCompatActivity() {
@@ -19,9 +18,8 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
-        val binding: ActivityListBinding =
-            DataBindingUtil.setContentView(this, R.layout.activity_list)
-
+        val binding = ActivityListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         binding.model = listVM
     }
 

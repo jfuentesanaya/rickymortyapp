@@ -3,6 +3,7 @@ package com.jfuentes.rickymortyapp
 import android.app.Application
 import com.jfuentes.rickymortyapp.data.remote.di.networkModule
 import com.jfuentes.rickymortyapp.domain.di.useCaseModule
+import com.jfuentes.rickymortyapp.presentation.di.picassoModule
 import com.jfuentes.rickymortyapp.presentation.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -19,7 +20,7 @@ class BaseApplication : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@BaseApplication)
-            modules(listOf(networkModule, useCaseModule, viewModelModule))
+            modules(listOf(networkModule, useCaseModule, viewModelModule, picassoModule))
         }
     }
 }
