@@ -1,7 +1,12 @@
 package com.jfuentes.rickymortyapp.presentation.viewmodel
 
+import android.view.View
+import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jfuentes.rickymortyapp.R
+import com.jfuentes.rickymortyapp.core.Result.*
 import com.jfuentes.rickymortyapp.core.BaseUseCase
 import com.jfuentes.rickymortyapp.domain.model.Character
 import com.jfuentes.rickymortyapp.domain.usecase.GetCharacterListUseCase
@@ -13,12 +18,42 @@ import kotlinx.coroutines.launch
  */
 class ListVM (private val useCase: GetCharacterListUseCase): ViewModel() {
 
-    val list  = emptyList<Character>()
     val adapter = CharacterAdapter()
+    val progressVisibility = ObservableInt(View.GONE)
+    val errorMessage = ObservableInt(R.string.network_error)
+    val btnMessage = ObservableField(R.string.restart)
+    val errorVisibility = ObservableInt(View.GONE)
 
     init {
+        loadData()
+    }
+
+    private fun loadData() {
+        progressVisibility.set(View.VISIBLE)
         viewModelScope.launch {
-            adapter.updateCharacters( useCase.execute(BaseUseCase.NoParameter).character)
+            when (val response = useCase.execute(BaseUseCase.NoParameter)) {
+                is NetworkError -> showErrorState(R.string.network_error)
+                is GenericError -> showErrorState(R.string.generic_error)
+                is Success -> showSuccessState(response)
+            }
         }
+    }
+
+    private fun showErrorState(message: Int) {
+        progressVisibility.set(View.GONE)
+        errorVisibility.set(View.VISIBLE)
+        errorMessage.set(message)
+    }
+
+    private fun showSuccessState(response: Success<List<Character>>) {
+        progressVisibility.set(View.GONE)
+        errorVisibility.set(View.GONE)
+        adapter.updateCharacters(
+            response.value
+        )
+    }
+
+    fun onLoadClick(view: View) {
+        loadData()
     }
 }

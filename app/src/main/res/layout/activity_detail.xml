@@ -33,7 +33,7 @@
             android:gravity="center"
             android:text="@{model.character.name}"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="@dimen/detail_title_size"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@+id/iv_character_detail"
             app:layout_constraintStart_toStartOf="@+id/iv_character_detail"
@@ -48,9 +48,10 @@
             android:layout_marginTop="32dp"
             android:text="@string/status"
             android:textColor="@android:color/black"
+            android:textSize="@dimen/detail_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_name"/>
+            app:layout_constraintTop_toBottomOf="@id/tv_title_name" />
 
         <TextView
             android:id="@+id/tv_text_status"
@@ -58,6 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@{model.character.status}"
+            android:textSize="@dimen/detail_text_size"
             app:layout_constraintStart_toEndOf="@+id/tv_status_title"
             app:layout_constraintTop_toTopOf="@+id/tv_status_title"
             tools:text="Fake status" />
@@ -69,6 +71,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/specie"
             android:textColor="@android:color/black"
+            android:textSize="@dimen/detail_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_status_title" />
@@ -79,6 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@{model.character.species}"
+            android:textSize="@dimen/detail_text_size"
             app:layout_constraintStart_toEndOf="@+id/tv_specie_title"
             app:layout_constraintTop_toTopOf="@+id/tv_specie_title"
             tools:text="Alien" />
@@ -90,6 +94,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/gender"
             android:textColor="@android:color/black"
+            android:textSize="@dimen/detail_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_specie_title" />
@@ -98,10 +103,11 @@
             android:id="@+id/tv_text_gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:text="@{model.character.gender}"
+            android:textSize="@dimen/detail_text_size"
             app:layout_constraintStart_toEndOf="@+id/tv_gender_title"
             app:layout_constraintTop_toTopOf="@+id/tv_gender_title"
-            android:layout_marginStart="10dp"
             tools:text="Male" />
 
         <TextView
@@ -111,6 +117,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/origin"
             android:textColor="@android:color/black"
+            android:textSize="@dimen/detail_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_gender_title" />
@@ -121,6 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@{model.character.originLocation.name}"
+            android:textSize="@dimen/detail_text_size"
             app:layout_constraintStart_toEndOf="@+id/tv_origin_title"
             app:layout_constraintTop_toTopOf="@+id/tv_origin_title"
             tools:text="Earth" />
@@ -132,6 +140,7 @@
             android:layout_marginStart="16dp"
             android:text="@string/origin"
             android:textColor="@android:color/black"
+            android:textSize="@dimen/detail_text_size"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_text_origin" />
@@ -142,6 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@{model.character.currentLocation.name}"
+            android:textSize="@dimen/detail_text_size"
             app:layout_constraintStart_toEndOf="@+id/tv_location_title"
             app:layout_constraintTop_toTopOf="@+id/tv_location_title"
             tools:text="Mart" />

@@ -33,4 +33,3 @@ fun ImageView.setImage(url: String, @DrawableRes placeholder: Int?) {
     }
     picasso.into(this)
 }
-
