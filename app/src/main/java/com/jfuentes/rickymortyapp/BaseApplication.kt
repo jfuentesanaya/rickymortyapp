@@ -1,6 +1,7 @@
 package com.jfuentes.rickymortyapp
 
 import android.app.Application
+import com.jfuentes.rickymortyapp.data.local.di.databaseModule
 import com.jfuentes.rickymortyapp.data.remote.di.networkModule
 import com.jfuentes.rickymortyapp.domain.di.useCaseModule
 import com.jfuentes.rickymortyapp.presentation.di.picassoModule
@@ -20,7 +21,7 @@ class BaseApplication : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@BaseApplication)
-            modules(listOf(networkModule, useCaseModule, viewModelModule, picassoModule))
+            modules(listOf(networkModule, useCaseModule, viewModelModule, picassoModule, databaseModule))
         }
     }
 }
