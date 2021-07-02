@@ -7,9 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.jfuentes.rickymortyapp.R
 import com.jfuentes.rickymortyapp.databinding.ActivityDetailBinding
 import com.jfuentes.rickymortyapp.domain.model.Character
+import com.jfuentes.rickymortyapp.domain.usecase.GetFavouriteByIdUseCase
 import com.jfuentes.rickymortyapp.presentation.viewmodel.CharacterDetailVM
+import org.koin.android.ext.android.inject
 
 class DetailActivity : AppCompatActivity() {
+
+    private val getFavByIdUseCase :GetFavouriteByIdUseCase by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +23,7 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val character: Character = requireNotNull(intent.extras?.character) { "Illegal opening, we need Character data to open detail screen" }
-        binding.model = CharacterDetailVM(character)
+        binding.model = CharacterDetailVM(character, getFavByIdUseCase)
     }
 
     companion object {

@@ -7,5 +7,6 @@ interface BaseUseCase <in ParamsType: Any, out ResultType :Any> {
 
     suspend fun execute(params: ParamsType) : ResultType
 
-    object  NoParameter
+    object NoParameter
+    object NoResult
 }

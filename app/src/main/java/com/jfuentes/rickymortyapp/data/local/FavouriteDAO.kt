@@ -16,12 +16,15 @@ interface FavouriteDAO {
     suspend fun getAll(): List<FavouriteEntity>
 
     @Query("SELECT * FROM favouriteEntity WHERE id LIKE :characterId")
-    fun findById(characterId: Int): FavouriteEntity
-
-    @Insert
-    fun insertAll(vararg users: FavouriteEntity)
+    suspend fun findById(characterId: Int): FavouriteEntity
 
     @Delete
-    fun delete(user: FavouriteEntity)
+    suspend fun delete(user: FavouriteEntity)
+
+    @Query("SELECT EXISTS (SELECT * FROM favouriteEntity WHERE id = :id)")
+    suspend fun exists(id: Int): Boolean
+
+    @Insert
+    suspend fun insert(user: FavouriteEntity)
 
 }
