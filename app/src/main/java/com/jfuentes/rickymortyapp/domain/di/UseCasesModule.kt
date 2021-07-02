@@ -2,10 +2,7 @@ package com.jfuentes.rickymortyapp.domain.di
 
 import com.jfuentes.rickymortyapp.domain.FavouritesRepo
 import com.jfuentes.rickymortyapp.domain.RickyMortyService
-import com.jfuentes.rickymortyapp.domain.usecase.AddCharacterToFavouriteUseCase
-import com.jfuentes.rickymortyapp.domain.usecase.GetCharacterListUseCase
-import com.jfuentes.rickymortyapp.domain.usecase.GetDetailCharacterUseCase
-import com.jfuentes.rickymortyapp.domain.usecase.GetFavouriteByIdUseCase
+import com.jfuentes.rickymortyapp.domain.usecase.*
 import org.koin.dsl.module
 
 /**
@@ -17,6 +14,7 @@ val useCaseModule = module {
     single { provideCharacterDetailUseCase(get()) }
     single { provideAddCharacterToFavouriteUseCase(get()) }
     single { provideGetFavouriteByIdUseCase(get()) }
+    single { provideRemoveCharacterFromFavouriteUseCase(get()) }
 }
 
 fun provideCharacterDetailUseCase(service: RickyMortyService) = GetCharacterListUseCase(service)
@@ -27,3 +25,6 @@ fun provideGetFavouriteByIdUseCase(repo: FavouritesRepo) = GetFavouriteByIdUseCa
 
 fun provideAddCharacterToFavouriteUseCase(repo: FavouritesRepo) =
     AddCharacterToFavouriteUseCase(repo)
+
+fun provideRemoveCharacterFromFavouriteUseCase(repo: FavouritesRepo) =
+    RemoveItemFromFavouriteUseCase(repo)

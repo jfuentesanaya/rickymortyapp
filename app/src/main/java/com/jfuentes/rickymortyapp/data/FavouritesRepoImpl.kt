@@ -19,11 +19,15 @@ class FavouritesRepoImpl (private val dao: FavouriteDAO): FavouritesRepo {
     }
 
     override suspend fun delete(item: FavouriteCharacter) {
-        dao.delete(item.toFavoriteEntity())
+        if (dao.exists(item.id)) {
+            dao.delete(item.toFavoriteEntity())
+        }
     }
 
     override suspend fun insertFavourite(item: FavouriteCharacter) {
-        dao.insert(item.toFavoriteEntity())
+        if (!dao.exists(item.id)) {
+            dao.insert(item.toFavoriteEntity())
+        }
     }
 
     override suspend fun existFavourite(id: Int): Boolean {
