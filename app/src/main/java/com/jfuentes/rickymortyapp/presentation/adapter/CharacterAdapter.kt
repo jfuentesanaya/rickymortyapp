@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jfuentes.rickymortyapp.R
 import com.jfuentes.rickymortyapp.databinding.CharacterItemBinding
 import com.jfuentes.rickymortyapp.domain.model.Character
+import com.jfuentes.rickymortyapp.domain.model.FavouriteCharacter
+import com.jfuentes.rickymortyapp.domain.model.toFavouriteCharacter
 import com.jfuentes.rickymortyapp.presentation.viewmodel.CardItemVM
 
 /**
@@ -36,6 +38,13 @@ class CharacterAdapter : RecyclerView.Adapter<CharacterAdapter.CharacterViewHold
 
     fun updateCharacters(characters: List<Character>) {
         values = characters
+        notifyDataSetChanged()
+    }
+
+    fun setFavourites(characters: List<FavouriteCharacter>) {
+        values.map {
+            it.isFavourite = characters.contains(it.toFavouriteCharacter())
+        }
         notifyDataSetChanged()
     }
 

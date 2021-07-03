@@ -25,5 +25,6 @@ data class Character(
     val currentLocation: Location,
     val image: String,
     val url: String,
-    val created: String
+    val created: String,
+    var isFavourite: Boolean = false
 ) : Parcelable

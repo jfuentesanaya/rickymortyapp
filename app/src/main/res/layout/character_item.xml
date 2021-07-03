@@ -48,6 +48,14 @@
                 app:layout_constraintTop_toBottomOf="@id/iv_character"
                 tools:text="Rick" />
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@{model.favourite ? @drawable/ic_favorites_filled :  @drawable/ic_favorites_outline}"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                tools:src="@drawable/ic_favorites_outline" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

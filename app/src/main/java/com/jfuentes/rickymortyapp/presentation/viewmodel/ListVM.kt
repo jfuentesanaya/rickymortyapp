@@ -9,14 +9,16 @@ import com.jfuentes.rickymortyapp.R
 import com.jfuentes.rickymortyapp.core.Result.*
 import com.jfuentes.rickymortyapp.core.BaseUseCase
 import com.jfuentes.rickymortyapp.domain.model.Character
+import com.jfuentes.rickymortyapp.domain.usecase.GetAllFavouritesUseCase
 import com.jfuentes.rickymortyapp.domain.usecase.GetCharacterListUseCase
 import com.jfuentes.rickymortyapp.presentation.adapter.CharacterAdapter
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
  * Created by Juan Fuentes on 29/06/2021.
  */
-class ListVM (private val useCase: GetCharacterListUseCase): ViewModel() {
+class ListVM (private val getCharacterListUseCase: GetCharacterListUseCase, private val getAllFavouritesUseCase: GetAllFavouritesUseCase): ViewModel() {
 
     val adapter = CharacterAdapter()
     val progressVisibility = ObservableInt(View.GONE)
@@ -31,10 +33,14 @@ class ListVM (private val useCase: GetCharacterListUseCase): ViewModel() {
     private fun loadData() {
         progressVisibility.set(View.VISIBLE)
         viewModelScope.launch {
-            when (val response = useCase.execute(BaseUseCase.NoParameter)) {
+            when (val response = getCharacterListUseCase.execute(BaseUseCase.NoParameter)) {
                 is NetworkError -> showErrorState(R.string.network_error)
                 is GenericError -> showErrorState(R.string.generic_error)
                 is Success -> showSuccessState(response)
+            }
+
+            getAllFavouritesUseCase.execute(BaseUseCase.NoParameter).collect {
+                adapter.setFavourites(it)
             }
         }
     }

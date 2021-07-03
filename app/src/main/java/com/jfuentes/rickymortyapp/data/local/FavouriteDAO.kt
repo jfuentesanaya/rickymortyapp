@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.Flow
 interface FavouriteDAO {
 
     @Query("SELECT * FROM favouriteEntity")
-    suspend fun getAll(): List<FavouriteEntity>
+    fun getAll(): Flow<List<FavouriteEntity>>
 
     @Query("SELECT * FROM favouriteEntity WHERE id LIKE :characterId")
     suspend fun findById(characterId: Int): FavouriteEntity

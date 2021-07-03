@@ -5,6 +5,7 @@ import com.jfuentes.rickymortyapp.data.local.model.FavouriteEntity
 import com.jfuentes.rickymortyapp.domain.FavouritesRepo
 import com.jfuentes.rickymortyapp.domain.model.FavouriteCharacter
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 
 
 /**
@@ -12,8 +13,8 @@ import kotlinx.coroutines.flow.Flow
  */
 class FavouritesRepoImpl (private val dao: FavouriteDAO): FavouritesRepo {
 
-    override suspend fun getAll(): List<FavouriteCharacter> {
-        return dao.getAll().map { it.toFavouriteCharacter() }
+    override fun getAll(): Flow<List<FavouriteCharacter>> {
+        return dao.getAll().map { list -> list.map { it.toFavouriteCharacter() } }
     }
 
     override suspend fun findById(characterId: Int): FavouriteCharacter {

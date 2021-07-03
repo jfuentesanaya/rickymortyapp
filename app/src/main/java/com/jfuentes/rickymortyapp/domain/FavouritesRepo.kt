@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
  */
 interface FavouritesRepo {
 
-    suspend fun getAll(): List<FavouriteCharacter>
+    fun getAll(): Flow<List<FavouriteCharacter>>
 
     suspend fun findById(characterId: Int): FavouriteCharacter
 

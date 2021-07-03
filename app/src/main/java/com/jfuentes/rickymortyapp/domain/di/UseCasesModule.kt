@@ -15,6 +15,7 @@ val useCaseModule = module {
     single { provideAddCharacterToFavouriteUseCase(get()) }
     single { provideGetFavouriteByIdUseCase(get()) }
     single { provideRemoveCharacterFromFavouriteUseCase(get()) }
+    single { provideGetAllFavouritesUseCase(get()) }
 }
 
 fun provideCharacterDetailUseCase(service: RickyMortyService) = GetCharacterListUseCase(service)
@@ -28,3 +29,5 @@ fun provideAddCharacterToFavouriteUseCase(repo: FavouritesRepo) =
 
 fun provideRemoveCharacterFromFavouriteUseCase(repo: FavouritesRepo) =
     RemoveItemFromFavouriteUseCase(repo)
+
+fun provideGetAllFavouritesUseCase(repo: FavouritesRepo) = GetAllFavouritesUseCase(repo)
