@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.jfuentes.rickymortyapp.data.local.model.FavouriteEntity
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Juan Fuentes on 01/07/2021.
@@ -22,7 +23,7 @@ interface FavouriteDAO {
     suspend fun delete(user: FavouriteEntity)
 
     @Query("SELECT EXISTS (SELECT * FROM favouriteEntity WHERE id = :id)")
-    suspend fun exists(id: Int): Boolean
+    fun exists(id: Int): Flow<Boolean>
 
     @Insert
     suspend fun insert(user: FavouriteEntity)

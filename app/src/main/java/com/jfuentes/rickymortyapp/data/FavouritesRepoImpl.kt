@@ -1,9 +1,11 @@
 package com.jfuentes.rickymortyapp.data
 
 import com.jfuentes.rickymortyapp.data.local.FavouriteDAO
-import com.jfuentes.rickymortyapp.domain.FavouritesRepo
 import com.jfuentes.rickymortyapp.data.local.model.FavouriteEntity
+import com.jfuentes.rickymortyapp.domain.FavouritesRepo
 import com.jfuentes.rickymortyapp.domain.model.FavouriteCharacter
+import kotlinx.coroutines.flow.Flow
+
 
 /**
  * Created by Juan Fuentes on 02/07/2021.
@@ -19,18 +21,14 @@ class FavouritesRepoImpl (private val dao: FavouriteDAO): FavouritesRepo {
     }
 
     override suspend fun delete(item: FavouriteCharacter) {
-        if (dao.exists(item.id)) {
-            dao.delete(item.toFavoriteEntity())
-        }
+        dao.delete(item.toFavoriteEntity())
     }
 
     override suspend fun insertFavourite(item: FavouriteCharacter) {
-        if (!dao.exists(item.id)) {
-            dao.insert(item.toFavoriteEntity())
-        }
+        dao.insert(item.toFavoriteEntity())
     }
 
-    override suspend fun existFavourite(id: Int): Boolean {
+    override fun existFavourite(id: Int): Flow<Boolean> {
         return dao.exists(id)
     }
 }

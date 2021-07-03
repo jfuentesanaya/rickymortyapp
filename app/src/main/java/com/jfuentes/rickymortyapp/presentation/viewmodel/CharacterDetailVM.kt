@@ -11,6 +11,7 @@ import com.jfuentes.rickymortyapp.domain.model.toFavouriteCharacter
 import com.jfuentes.rickymortyapp.domain.usecase.AddCharacterToFavouriteUseCase
 import com.jfuentes.rickymortyapp.domain.usecase.GetFavouriteByIdUseCase
 import com.jfuentes.rickymortyapp.domain.usecase.RemoveItemFromFavouriteUseCase
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -64,9 +65,11 @@ class CharacterDetailVM(
     private fun checkIfCharacterIsFavourite() {
         val idCharacter = GetFavouriteByIdUseCase.Params(character.id)
         viewModelScope.launch {
-            val result = getFavByIdUseCase.execute(idCharacter).value
-            isFavourite.set(result)
-            if(result) imageFav.set(R.drawable.ic_favorites_filled)
+            getFavByIdUseCase.execute(idCharacter).collect {
+                isFavourite.set(it)
+                if(it) imageFav.set(R.drawable.ic_favorites_filled)
+            }
+
         }
     }
 }
