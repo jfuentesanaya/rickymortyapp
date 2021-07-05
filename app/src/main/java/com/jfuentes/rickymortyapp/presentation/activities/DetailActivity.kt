@@ -8,14 +8,14 @@ import com.jfuentes.rickymortyapp.R
 import com.jfuentes.rickymortyapp.databinding.ActivityDetailBinding
 import com.jfuentes.rickymortyapp.domain.model.Character
 import com.jfuentes.rickymortyapp.domain.usecase.AddCharacterToFavouriteUseCase
-import com.jfuentes.rickymortyapp.domain.usecase.GetFavouriteByIdUseCase
+import com.jfuentes.rickymortyapp.domain.usecase.ExistIdFavouriteUseCase
 import com.jfuentes.rickymortyapp.domain.usecase.RemoveItemFromFavouriteUseCase
 import com.jfuentes.rickymortyapp.presentation.viewmodel.CharacterDetailVM
 import org.koin.android.ext.android.inject
 
 class DetailActivity : AppCompatActivity() {
 
-    private val getFavByIdUseCase :GetFavouriteByIdUseCase by inject()
+    private val getFavByIdFavouriteUseCase :ExistIdFavouriteUseCase by inject()
     private val addFavouriteCharacter : AddCharacterToFavouriteUseCase by inject()
     private val removeItemFromFavouriteUseCase : RemoveItemFromFavouriteUseCase by inject()
 
@@ -30,7 +30,7 @@ class DetailActivity : AppCompatActivity() {
             requireNotNull(intent.extras?.character) { "Illegal opening, we need Character data to open detail screen" }
         binding.model = CharacterDetailVM(
             character,
-            getFavByIdUseCase,
+            getFavByIdFavouriteUseCase,
             addFavouriteCharacter,
             removeItemFromFavouriteUseCase
         )

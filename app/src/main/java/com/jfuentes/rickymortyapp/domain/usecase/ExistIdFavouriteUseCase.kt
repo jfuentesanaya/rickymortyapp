@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Created by Juan Fuentes on 01/07/2021.
  */
-class GetFavouriteByIdUseCase(private val repo: FavouritesRepo) :
-    BaseUseCase<GetFavouriteByIdUseCase.Params, Flow<Boolean>> {
+class ExistIdFavouriteUseCase(private val repo: FavouritesRepo) :
+    BaseUseCase<ExistIdFavouriteUseCase.Params, Flow<Boolean>> {
 
     override suspend fun execute(params: Params): Flow<Boolean> {
         return repo.existFavourite(params.id)

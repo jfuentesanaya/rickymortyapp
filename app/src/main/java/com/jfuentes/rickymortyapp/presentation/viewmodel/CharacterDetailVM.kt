@@ -9,7 +9,7 @@ import com.jfuentes.rickymortyapp.R
 import com.jfuentes.rickymortyapp.domain.model.Character
 import com.jfuentes.rickymortyapp.domain.model.toFavouriteCharacter
 import com.jfuentes.rickymortyapp.domain.usecase.AddCharacterToFavouriteUseCase
-import com.jfuentes.rickymortyapp.domain.usecase.GetFavouriteByIdUseCase
+import com.jfuentes.rickymortyapp.domain.usecase.ExistIdFavouriteUseCase
 import com.jfuentes.rickymortyapp.domain.usecase.RemoveItemFromFavouriteUseCase
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
  */
 class CharacterDetailVM(
     val character: Character,
-    private val getFavByIdUseCase: GetFavouriteByIdUseCase,
+    private val getFavByIdFavouriteUseCase: ExistIdFavouriteUseCase,
     private val addCharacterToFavouriteUseCase: AddCharacterToFavouriteUseCase,
     private val removeItemFromFavouriteUseCase: RemoveItemFromFavouriteUseCase
 ) : ViewModel() {
@@ -63,9 +63,9 @@ class CharacterDetailVM(
     }
 
     private fun checkIfCharacterIsFavourite() {
-        val idCharacter = GetFavouriteByIdUseCase.Params(character.id)
+        val idCharacter = ExistIdFavouriteUseCase.Params(character.id)
         viewModelScope.launch {
-            getFavByIdUseCase.execute(idCharacter).collect {
+            getFavByIdFavouriteUseCase.execute(idCharacter).collect {
                 isFavourite.set(it)
                 if(it) imageFav.set(R.drawable.ic_favorites_filled)
             }

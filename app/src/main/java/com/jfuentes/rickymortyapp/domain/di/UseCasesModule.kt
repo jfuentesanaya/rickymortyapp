@@ -22,7 +22,7 @@ fun provideCharacterDetailUseCase(service: RickyMortyService) = GetCharacterList
 
 fun provideCharactersUseCase(service: RickyMortyService) = GetDetailCharacterUseCase(service)
 
-fun provideGetFavouriteByIdUseCase(repo: FavouritesRepo) = GetFavouriteByIdUseCase(repo)
+fun provideGetFavouriteByIdUseCase(repo: FavouritesRepo) = ExistIdFavouriteUseCase(repo)
 
 fun provideAddCharacterToFavouriteUseCase(repo: FavouritesRepo) =
     AddCharacterToFavouriteUseCase(repo)
