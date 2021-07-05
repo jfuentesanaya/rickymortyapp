@@ -1,7 +1,6 @@
 package com.jfuentes.rickymortyapp.data.local
 
 import com.jfuentes.rickymortyapp.data.FavouritesRepoImpl
-import com.jfuentes.rickymortyapp.data.local.FavouriteDAO
 import com.jfuentes.rickymortyapp.data.local.model.FavouriteEntity
 import com.jfuentes.rickymortyapp.data.toFavoriteEntity
 import com.jfuentes.rickymortyapp.data.toFavouriteCharacter
