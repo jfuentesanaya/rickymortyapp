@@ -8,5 +8,4 @@
     <string name="generic_error">Something wrong has happen</string>
     <string name="network_error">Network error, check your internet connectivity and try again.</string>
     <string name="restart">Restart</string>
-    <string name="favourites_list">Show my favourites</string>
 </resources>
